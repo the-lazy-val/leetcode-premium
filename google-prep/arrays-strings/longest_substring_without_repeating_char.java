@@ -100,6 +100,15 @@ For updating the window when we detect repetition, we do:
 i = Math.max(hm.get(s.charAt(j)) , i)
 
 because, if "i" is already ahead of the last occurence of character, we do not want to move back "i"
+
+
+
+    Time complexity : O(n)O(n)O(n). Index jjj will iterate nnn times.
+
+    Space complexity (HashMap) : O(min(m,n))O(min(m, n))O(min(m,n)). Same as the previous approach.
+
+    Space complexity (Table): O(m)O(m)O(m). mmm is the size of the charset.
+
 */
 
 class Solution {
