@@ -77,6 +77,10 @@ class Solution {
 
 // Runtime: 3 ms
 
+//https://leetcode.com/problems/container-with-most-water/discuss/6099/yet-another-way-to-see-what-happens-in-the-on-algorithm
+
+//https://www.youtube.com/watch?v=UuiTKBwPgAo
+
 // Same solution, but we can avoid the extra variables I declared:
 class Solution {
     public int maxArea(int[] height) {
