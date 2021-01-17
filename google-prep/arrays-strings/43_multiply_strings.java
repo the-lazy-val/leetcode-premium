@@ -232,6 +232,33 @@ x12  i
 ---
 228 // max length of (N1+N2+1) here
 
+
+ALL loops going REVERSE
+
+i | j | i+j+1 | product of i & j
+________________________________
+1 | 1 | 3     | 18
+1 | 0 | 2     | 2
+0 | 1 | 2     | 9
+0 | 0 | 1     | 1
+
+1st internal loop (j wala) gives
+[0, 0, 2, 18]
+
+2nd internal loop gives
+[0, 1, 9, 0]
+
+But we are adding elements already present in the indexes, so after first loop (pura i + j)
+
+[0, 1, 11, 18]
+
+We deal with the carry in the next loop (going reverse)
+
+initialize carry = 0
+
+we replace arr[i] with (arr[i] + carry)%10
+carry = (arr[i] + carry)/10
+
       idx = 0, 1, 2, 3
 products = [0, 1, 11,18] // after first loop
 
