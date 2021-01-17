@@ -69,15 +69,15 @@ class Solution {
 
 
 //Using Hint: In 3-Sum, fix one element and then the problem becomes 2-Sum, which can be solved using HashMap
-//Below solution accepted, but run time is high: 1252 ms
+//Below solution accepted, but run time is high: 1065 ms
 
 class Solution {
     
     Set<List<Integer>> hs = new HashSet<>();
     
-    Map<Integer, Integer> hm = new HashMap<>();
-    
     public void checkTwoSum(int[] nums, int fixed, int start, int end){
+        Map<Integer, Integer> hm = new HashMap<>();
+        
         for(int j=start; j<end; j++){
             int v = nums[j];
             int diff = -1 * (fixed + v);
@@ -98,6 +98,7 @@ class Solution {
     }
     
     public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
         int len = nums.length;
         for(int i=0; i< len-2; i++){
             int fixed = nums[i];
