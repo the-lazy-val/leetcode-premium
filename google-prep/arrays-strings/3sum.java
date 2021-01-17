@@ -66,3 +66,45 @@ class Solution {
         return res;
     }
 }
+
+
+//Using Hint: In 3-Sum, fix one element and then the problem becomes 2-Sum, which can be solved using HashMap
+//Below solution accepted, but run time is high: 1252 ms
+
+class Solution {
+    
+    Set<List<Integer>> hs = new HashSet<>();
+    
+    Map<Integer, Integer> hm = new HashMap<>();
+    
+    public void checkTwoSum(int[] nums, int fixed, int start, int end){
+        for(int j=start; j<end; j++){
+            int v = nums[j];
+            int diff = -1 * (fixed + v);
+            
+            if(hm.containsKey(diff)){
+                int foundIndex = hm.get(diff);
+                
+                if(foundIndex != j && foundIndex >= start){
+                    List<Integer> temp = new ArrayList<Integer>(Arrays.asList(fixed, v, diff));
+                    Collections.sort(temp);
+                    hs.add(temp);
+                    hm.put(v, j);
+                }
+            }
+            hm.put(v, j);
+            
+        }
+    }
+    
+    public List<List<Integer>> threeSum(int[] nums) {
+        int len = nums.length;
+        for(int i=0; i< len-2; i++){
+            int fixed = nums[i];
+            checkTwoSum(nums, fixed, i+1, len);
+        }
+        
+        List<List<Integer>> res = new ArrayList<List<Integer>>(hs);
+        return res;
+    }
+}
