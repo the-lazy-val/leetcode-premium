@@ -69,7 +69,7 @@ class Solution {
 
 
 //Using Hint: In 3-Sum, fix one element and then the problem becomes 2-Sum, which can be solved using HashMap
-//Below solution accepted, but run time is high: 1065 ms
+//Below solution accepted, but run time is high: 998 ms
 
 class Solution {
     
@@ -89,7 +89,6 @@ class Solution {
                     List<Integer> temp = new ArrayList<Integer>(Arrays.asList(fixed, v, diff));
                     Collections.sort(temp);
                     hs.add(temp);
-                    hm.put(v, j);
                 }
             }
             hm.put(v, j);
