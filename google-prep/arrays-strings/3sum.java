@@ -134,12 +134,10 @@ class Solution {
                 }
             }
             hm.put(v, j);
-            
         }
     }
     
     public List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
         //avoid duplicate elements
         Set<Integer> dups = new HashSet<>();
         int len = nums.length;
@@ -153,7 +151,6 @@ class Solution {
             }
         }
         
-        List<List<Integer>> res = new ArrayList<List<Integer>>(hs);
-        return res;
+        return new ArrayList(hs);
     }
 }
