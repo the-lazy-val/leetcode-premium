@@ -41,6 +41,10 @@ From the end, find out the element which is breaking the ascending order
 Swap that element with the next greater element (kinda TreeMap) to its right (i.e. towards the end)
 
 Sort all elements, after it in ascending order
+
+https://www.geeksforgeeks.org/find-the-next-lexicographically-greater-word-than-a-given-word/
+
+https://assets.leetcode.com/static_assets/media/original_images/31_Next_Permutation.gif
 */
 class Solution {
     
