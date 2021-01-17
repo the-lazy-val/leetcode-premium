@@ -108,3 +108,52 @@ class Solution {
         return res;
     }
 }
+
+
+//Using the property that, set.add() returns false if element already exists in a set
+//We use the above property to avoid processing repeated "fixed" element
+//By avoiding re-processing runtime is now 272 ms
+class Solution {
+    
+    Set<List<Integer>> hs = new HashSet<>();
+    
+    public void checkTwoSum(int[] nums, int fixed, int start, int end){
+        Map<Integer, Integer> hm = new HashMap<>();
+        
+        for(int j=start; j<end; j++){
+            int v = nums[j];
+            int diff = -1 * (fixed + v);
+            
+            if(hm.containsKey(diff)){
+                int foundIndex = hm.get(diff);
+                
+                if(foundIndex != j && foundIndex >= start){
+                    List<Integer> temp = new ArrayList<Integer>(Arrays.asList(fixed, v, diff));
+                    Collections.sort(temp);
+                    hs.add(temp);
+                }
+            }
+            hm.put(v, j);
+            
+        }
+    }
+    
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        //avoid duplicate elements
+        Set<Integer> dups = new HashSet<>();
+        int len = nums.length;
+        for(int i=0; i< len-2; i++){
+            int fixed = nums[i];
+            
+            //https://docs.oracle.com/javase/7/docs/api/java/util/Set.html#add(E)
+            //return true if element doesn't already exist in Set
+            if(dups.add(fixed)){
+                checkTwoSum(nums, fixed, i+1, len);
+            }
+        }
+        
+        List<List<Integer>> res = new ArrayList<List<Integer>>(hs);
+        return res;
+    }
+}
