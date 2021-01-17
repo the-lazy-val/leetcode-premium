@@ -214,5 +214,27 @@ Things to note:
 
 int d1 = num1.charAt(i) - '0';
 int d2 = num2.charAt(j) - '0';
-*/
 products[i + j + 1] += d1 * d2;
+*/
+
+/**
+Great explanation. Wanted to provide some illustration below
+Smart part is realizing there is a max length of ans and directly adding sums to correct position products[i + j + 1] += d1 * d2;
+
+num1 = "12"
+num2 = "19"
+
+ 19  j
+x12  i
+---
+ 38
+190  
+---
+228 // max length of (N1+N2+1) here
+
+      idx = 0, 1, 2, 3
+products = [0, 1, 11,18] // after first loop
+
+products = [0, 2, 2, 8] // after second loop
+
+*/
