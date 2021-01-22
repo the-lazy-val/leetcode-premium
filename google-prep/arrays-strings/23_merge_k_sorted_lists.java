@@ -1,6 +1,9 @@
 /**
 My solution: 272 ms
 Slow, because it traverses through first element of each LinkedList in array for each entry
+
+Time comolexity: O(k*N)
+
 */
 
 class Solution {
@@ -54,6 +57,9 @@ class Solution {
 Better solution: 4 ms
 
 Using Priority Queue
+
+Time comolexity: O(N * log k)
+
 */
 /***
 
