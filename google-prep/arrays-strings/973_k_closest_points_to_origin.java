@@ -30,6 +30,12 @@ class Solution {
 }
 
 /**
+Improvised
+
+Runtime: 18 ms
+beats 74%
+memory: beats: 57%
+
 Instead of adding extra elements to the heap, poll if size exceeds K
 But since poll removes the highest priority (samllest distance), we reverse the comparator by multiplying -1
 
