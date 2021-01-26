@@ -28,3 +28,29 @@ class Solution {
         return res;
     }
 }
+
+/**
+Instead of adding extra elements to the heap, poll if size exceeds K
+But since poll removes the highest priority (samllest distance), we reverse the comparator by multiplying -1
+
+*/
+class Solution {
+    public int[][] kClosest(int[][] points, int K) {
+        PriorityQueue<int[]> pq = 
+            new PriorityQueue<>(points.length, (int[] a, int[] b) -> -1*(
+                (a[0]-b[0])*(a[0]+b[0]) + (a[1]-b[1])*(a[1]+b[1])
+            ));
+        
+        int counter = 0;
+        
+        for(int[] e : points){
+            counter++;
+            pq.add(e);
+            if(counter > K){
+                pq.poll();
+            }
+        }
+        
+        return pq.toArray(new int[K][2]);
+    }
+}
