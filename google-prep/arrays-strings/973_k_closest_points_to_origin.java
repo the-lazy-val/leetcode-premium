@@ -1,5 +1,7 @@
 /**
-My solution: 29ms
+My solution: 26ms
+beats 52 %
+memory: beats 81 %
 using priority queue
 */
 
