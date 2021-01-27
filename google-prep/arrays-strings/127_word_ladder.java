@@ -2,6 +2,8 @@
 https://www.youtube.com/watch?v=ZVJ3asMoZ18
 
 DFS Approach: using queue & set
+218 ms
+beats 28%
 */
 
 class Solution {
@@ -56,6 +58,54 @@ class Solution {
             return 0;
         }else{
             return depth+1;
+        }
+    }
+}
+
+
+/**
+Constructing graph using HashMap
+ 40 ms
+ */
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Map<String, List<String>> graph = new HashMap<>();
+        for(String word : wordList) {
+            buildGraph(word, graph);
+        }
+        
+        Queue<String> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+        queue.offer(beginWord);
+        visited.add(beginWord);
+        int res = 1;
+        
+        while(!queue.isEmpty()) {
+            int len = queue.size();
+            for(int i = 0; i < len; i++) {
+                String cur = queue.poll();
+                for(int j = 0; j < cur.length(); j++) {
+                    String key = cur.substring(0, j) + "*" + cur.substring(j+1, cur.length());
+                    if(!graph.containsKey(key))     continue;
+                    for(String neigh : graph.get(key)) {
+                        if(visited.contains(neigh))     continue;
+                        if(neigh.equals(endWord))   return res + 1;
+                        visited.add(neigh);
+                        queue.offer(neigh);
+                    }
+                }
+            }
+            res++;
+        }
+        
+        return 0;
+    }
+    
+    private void buildGraph(String word, Map<String, List<String>> graph) {
+        for(int j = 0; j < word.length(); j++) {
+            String key = word.substring(0, j) + "*" + word.substring(j+1, word.length());
+            graph.putIfAbsent(key, new ArrayList<>());
+            graph.get(key).add(word);
         }
     }
 }
