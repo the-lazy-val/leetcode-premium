@@ -25,4 +25,10 @@ all levels have 2^h nodes.
 h -> 0,1,2 (level of that layer)
 
 except the last layer, which may have 1 to 2^h nodes
+
+
+Since in Binary Complete tree, at last level, all nodes are towards left
+We can Binary Search to find the how many nodes are there in the last level
+
+https://docs.google.com/document/d/1csfxOIOuV6xkuFJ8cT3SQUasO7drOgqyIRwtXkbB9mU/edit?usp=sharing
 */
