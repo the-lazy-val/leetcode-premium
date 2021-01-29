@@ -10,3 +10,42 @@ Digit entered '0' : your solution will try to match last n i.e '10'
 Hence you must come with shortest solution string containing all possible combinations
 
 */
+
+// https://www.youtube.com/watch?v=6VSWohXUZMQ
+
+
+class Solution {
+    HashSet<String> visited;
+    StringBuilder result;
+    
+    
+    public void dfs(String node, int k){ //if n=3, start="00" then we append all possible k values
+        for(int i=0; i<k; i++){
+            String temp = node + i;
+            if(! visited.contains(temp)){
+                visited.add(temp);
+                dfs(temp.substring(1), k); //now take last n-1 chars, and treat it as node is the dfs function
+                
+                result.append(i);
+            }
+        }
+    }
+    
+    public String crackSafe(int n, int k) {
+        if(n==1 && k==1){
+            return "0";
+        }
+        
+        visited = new HashSet<>();
+        result = new StringBuilder();
+        
+       
+        String start = "0".repeat(n-1); // so if n=3, start = "00"
+        
+        dfs(start, k);
+        
+        result.append(start);
+        
+        return result.toString();
+    }
+}
