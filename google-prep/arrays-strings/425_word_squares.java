@@ -75,3 +75,62 @@ class Solution {
         return output;
     }
 }
+
+
+/**
+Better approach
+instead of just depending on first char, use prefixes
+
+BALL                                          BALL
+A                                             AREA
+L      -> search for words with preifx 'A' -> LE     -> so we are filling from corners, next find words with prefix 'LE'
+L                                             LA
+
+*/
+
+class Solution {
+    
+    List<List<String>> output;
+    HashMap<String, ArrayList<String>> hm;
+    
+    public void backtrack(int step, LinkedList<String> curr, int len){
+        if(curr.size() == len){
+            output.add(new ArrayList<>(curr));
+        }else{
+            StringBuilder sb = new StringBuilder();
+            for(String w: curr){
+                sb.append(w.charAt(step));
+            }
+            String prefix = sb.toString();
+            
+            for(String w: hm.getOrDefault(prefix, new ArrayList<>())){
+                curr.add(w);
+                backtrack(step+1, curr, len);
+                curr.removeLast();
+            }
+        }
+    }
+    
+    public List<List<String>> wordSquares(String[] words) {
+        output = new ArrayList();
+        hm = new HashMap();
+        
+        int len = words[0].length();
+        
+        for(String w : words){
+            for(int i=0; i<len; i++){
+                String prefix = w.substring(0, i);
+                hm.putIfAbsent(prefix, new ArrayList());
+                hm.get(prefix).add(w);
+            }
+        }
+        
+        for(String w : words){
+            LinkedList<String> curr = new LinkedList<>(); //if we used ArrayList instead, then remove() call at line 19 will remove repeating works as well
+            curr.add(w);
+            backtrack(1, curr, len);
+        }
+        
+        return output;
+    }
+}
