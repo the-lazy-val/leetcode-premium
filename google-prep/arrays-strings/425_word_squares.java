@@ -78,6 +78,9 @@ class Solution {
 
 
 /**
+
+https://www.youtube.com/watch?v=YTQjsPiMtRk
+
 Better approach
 instead of just depending on first char, use prefixes
 
