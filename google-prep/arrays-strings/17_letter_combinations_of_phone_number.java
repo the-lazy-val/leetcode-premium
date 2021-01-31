@@ -4,7 +4,16 @@ beats 81%
 */
 
 class Solution {
-    HashMap<Character, List<Character>> hm = new HashMap();
+    HashMap<Character, List<Character>> hm = new HashMap<>(){{
+        put('2', new ArrayList(Arrays.asList('a', 'b', 'c')));
+        put('3', new ArrayList(Arrays.asList('d', 'e', 'f')));
+        put('4', new ArrayList(Arrays.asList('g', 'h', 'i')));
+        put('5', new ArrayList(Arrays.asList('j', 'k', 'l')));
+        put('6', new ArrayList(Arrays.asList('m', 'n', 'o')));
+        put('7', new ArrayList(Arrays.asList('p', 'q', 'r', 's')));
+        put('8', new ArrayList(Arrays.asList('t', 'u', 'v')));
+        put('9', new ArrayList(Arrays.asList('w', 'x', 'y', 'z')));
+    }};
     
     ArrayList<String> output = new ArrayList<>();
     
@@ -26,14 +35,6 @@ class Solution {
         if(digits.isEmpty()){
             return new ArrayList<>();
         }
-        hm.put('2', new ArrayList(Arrays.asList('a', 'b', 'c')));
-        hm.put('3', new ArrayList(Arrays.asList('d', 'e', 'f')));
-        hm.put('4', new ArrayList(Arrays.asList('g', 'h', 'i')));
-        hm.put('5', new ArrayList(Arrays.asList('j', 'k', 'l')));
-        hm.put('6', new ArrayList(Arrays.asList('m', 'n', 'o')));
-        hm.put('7', new ArrayList(Arrays.asList('p', 'q', 'r', 's')));
-        hm.put('8', new ArrayList(Arrays.asList('t', 'u', 'v')));
-        hm.put('9', new ArrayList(Arrays.asList('w', 'x', 'y', 'z')));
         
         makeString(digits, 0, digits.length(), new StringBuilder());
         return output;
