@@ -43,3 +43,42 @@ class Solution {
         return s.substring(start, end+1);
     }
 }
+
+
+/**
+Better performance
+
+Approach is for a string: abbaccbbcc
+
+start from 0 -> n
+and expand the string in both directions if i-1 == i+1 
+- for odd: start with single char s.charAt(i)
+- for even: start with 2 length string: s.charAt(i) + s.charAt(i+1)
+
+*/
+
+public class Solution {
+private int lo, maxLen;
+
+public String longestPalindrome(String s) {
+	int len = s.length();
+	if (len < 2)
+		return s;
+	
+    for (int i = 0; i < len-1; i++) {
+     	extendPalindrome(s, i, i);  //assume odd length, try to extend Palindrome as possible
+     	extendPalindrome(s, i, i+1); //assume even length.
+    }
+    return s.substring(lo, lo + maxLen);
+}
+
+private void extendPalindrome(String s, int j, int k) {
+	while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
+		j--;
+		k++;
+	}
+	if (maxLen < k - j - 1) {
+		lo = j + 1;
+		maxLen = k - j - 1;
+	}
+}}
