@@ -48,6 +48,8 @@ class Solution {
 /**
 Better performance
 
+https://leetcode.com/problems/longest-palindromic-substring/discuss/2928/Very-simple-clean-java-solution
+
 Approach is for a string: abbaccbbcc
 
 start from 0 -> n
