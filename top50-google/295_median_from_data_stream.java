@@ -62,6 +62,69 @@ class MedianFinder {
 }
 
 /**
+Instead of calling size()
+we can maintain leftLen & rightLen as well
+*/
+
+class MedianFinder {
+
+    boolean isOdd = false;
+    PriorityQueue<Integer> left;
+    PriorityQueue<Integer> right;
+    int leftLen;
+    int rightLen;
+    
+    /** initialize your data structure here. */
+    public MedianFinder() {
+        left = new PriorityQueue<>(Collections.reverseOrder());
+        right = new PriorityQueue<>();
+        leftLen = 0;
+        rightLen = 0;
+    }
+    
+    public void addNum(int num) {
+        
+        left.add(num);
+        leftLen++;
+        
+        if(rightLen > 0){
+            int rightMin = right.peek();
+            if(num > rightMin){
+                left.poll();
+                leftLen--;
+                
+                right.add(num);
+                rightLen++;
+            }
+        }
+        
+        if(leftLen - rightLen > 1){
+            right.add(left.poll());
+            leftLen--;
+            rightLen++;
+        }
+        
+        if(rightLen - leftLen > 1){
+            left.add(right.poll());
+            rightLen--;
+            leftLen++;
+        }
+        isOdd = !isOdd;
+    }
+    
+    public double findMedian() {
+        if(isOdd){
+            if(leftLen >= rightLen)
+                return (double) left.peek();
+            else
+                return (double) right.peek();
+        }else{
+            return ((double)left.peek() + (double) right.peek())/2;
+        }
+    }
+}
+
+/**
  * Your MedianFinder object will be instantiated and called as such:
  * MedianFinder obj = new MedianFinder();
  * obj.addNum(num);
