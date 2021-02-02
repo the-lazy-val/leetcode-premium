@@ -85,6 +85,8 @@ Minor optimization on above code:
 
 24 ms
 
+O(amount * num of coins)
+
 beats 33%
 */
 class Solution {
