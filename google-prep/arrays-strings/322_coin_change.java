@@ -146,6 +146,10 @@ class Solution {
         
         dp = new int[Math.max(len, amount)+1];
         
+        for(int i=1; i<coins[0]; i++){
+            dp[i] = -1;
+        }
+        
         for(int c : coins){
             dp[c] = 1;
         }
