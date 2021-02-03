@@ -1,6 +1,8 @@
 /**
 4ms
-O(N)
+O(N log A)
+N -> size of S
+A -> size of heap, i.e. number of chars
 
 beats 46%
 
