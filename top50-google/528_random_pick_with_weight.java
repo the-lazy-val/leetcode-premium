@@ -55,6 +55,9 @@ class Solution {
 
 /**
 Using buckets + binary search
+
+https://www.youtube.com/watch?v=fWS0TCcr-lE
+
 */
 
 class Solution {
