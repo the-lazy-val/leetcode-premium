@@ -54,15 +54,14 @@ class Solution {
 
 
 /**
-Using buckets
-
-can be optimized with binary search on buckets
+Using buckets + binary search
 */
 
 class Solution {
     
     int[] cumulative;
     int sum;
+    Random rand;
     
     public Solution(int[] w) {
         int len = w.length;
@@ -75,18 +74,20 @@ class Solution {
         }
         
         sum = cumulative[len-1];
+        rand = new Random();
     }
     
     public int pickIndex() {
-        Random rand = new Random();
         int randomValue = rand.nextInt(sum) + 1; // since this generates only 0 to sum-1, adding 1 after
         
-        //can be optimized with binary search
-        for(int i=0; i<cumulative.length; i++){
-            if(randomValue <= cumulative[i]){
-                return i;
-            }
+        int l=0, r=cumulative.length-1;
+        while(l+1<r) {
+            int mid = l + (r-l)/2;
+            if(randomValue <= cumulative[mid])
+                r = mid;
+            else
+                l = mid + 1;
         }
-        return 0;
+        return cumulative[l] >= randomValue ? l : r;
     }
 }
