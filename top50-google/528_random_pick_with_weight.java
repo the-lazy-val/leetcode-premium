@@ -51,3 +51,42 @@ class Solution {
         return pick;
     }
 }
+
+
+/**
+Using buckets
+
+can be optimized with binary search on buckets
+*/
+
+class Solution {
+    
+    int[] cumulative;
+    int sum;
+    
+    public Solution(int[] w) {
+        int len = w.length;
+        cumulative = new int[len];
+        
+        cumulative[0] = w[0];
+        
+        for(int i=1; i<len; i++){
+            cumulative[i] = w[i] + cumulative[i-1];
+        }
+        
+        sum = cumulative[len-1];
+    }
+    
+    public int pickIndex() {
+        Random rand = new Random();
+        int randomValue = rand.nextInt(sum) + 1; // since this generates only 0 to sum-1, adding 1 after
+        
+        //can be optimized with binary search
+        for(int i=0; i<cumulative.length; i++){
+            if(randomValue <= cumulative[i]){
+                return i;
+            }
+        }
+        return 0;
+    }
+}
