@@ -48,7 +48,11 @@ class Solution {
         }
         
         /**
-        Third loop: absolteRoot -> list of emails
+        Third loop: absolteRoot -> list of children emails
+        
+            johnsmith@mail.com->{johnsmith@mail.com,john00@mail.com,john_newyork@mail.com}
+            johnnybravo@mail.com->{johnnybravo@mail.com}
+            mary@mail.com->{mary@mail.com}
         */
         
         for(List<String> acc : accounts){
