@@ -10,12 +10,32 @@ class Solution {
         HashMap<String, String> mailToOwner = new HashMap<>();
         HashMap<String, HashSet<String>> allMailsToAbsRoot = new HashMap<>();
         
+        /**
+        First loop: make every email its own root
+            johnsmith@mail.com->johnsmith@mail.com
+            john00@mail.com->john00@mail.com
+            johnnybravo@mail.com->johnnybravo@mail.com
+            johnsmith@mail.com->johnsmith@mail.com
+            john_newyork@mail.com->john_newyork@mail.com
+            mary@mail.com->mary@mail.com
+        */
+        
         for(List<String> acc : accounts){
             for(int i=1; i<acc.size(); i++){
                 mailToRoot.put(acc.get(i), acc.get(i)); //initially every email is its own root
                 mailToOwner.put(acc.get(i), acc.get(0)); 
             }
         }
+        
+        /**
+        Second loop: link all emails in an account to the first email in the array (absolute root)
+            johnsmith@mail.com->johnsmith@mail.com
+            john00@mail.com->johnsmith@mail.com
+            johnnybravo@mail.com->johnnybravo@mail.com
+            johnsmith@mail.com->johnsmith@mail.com
+            john_newyork@mail.com->johnsmith@mail.com
+            mary@mail.com->mary@mail.com
+        */
         
         for(List<String> acc : accounts){
             String absoluteRoot = find(acc.get(1), mailToRoot); //get absolute root of 1st email
@@ -26,6 +46,10 @@ class Solution {
                 mailToRoot.put(rootOfAccountI, absoluteRoot);
             }
         }
+        
+        /**
+        Third loop: absolteRoot -> list of emails
+        */
         
         for(List<String> acc : accounts){
             for(int i=1; i<acc.size(); i++){
