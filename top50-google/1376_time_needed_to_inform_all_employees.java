@@ -1,6 +1,6 @@
 /**
-My solution: 107 ms
-beats 65 %
+My solution: 95 ms
+beats 72 %
 
 Using DFS and maintain max
 */
