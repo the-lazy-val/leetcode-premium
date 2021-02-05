@@ -52,3 +52,25 @@ class Solution {
         return true;
     }
 }
+
+
+/**
+Better solution using TreeMap
+*/
+
+public boolean isNStraightHand(int[] hand, int W) {
+    if (hand == null || hand.length == 0) return true;
+    if (hand.length % W != 0) return false;
+    TreeMap<Integer, Integer> map = new TreeMap<>();
+    for (int curr : hand) map.put(curr, map.getOrDefault(curr, 0) + 1);     // O(nlogn) time.
+    while (map.size() > 0) {
+        // Try creating the next group of W consecutive cards.
+        int start = map.firstKey();                 // O(logn) time.
+        for (int i = start; i < start + W; ++i) {
+            if (!map.containsKey(i)) return false;  // O(logn) time.
+            map.put(i, map.get(i) - 1);             // O(logn) time.
+            if (map.get(i) == 0) map.remove(i);     // O(logn) time.
+        }
+    }
+    return true;
+}
