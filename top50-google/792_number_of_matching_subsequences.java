@@ -16,7 +16,7 @@ class Solution {
             for(int i=0; i<words.length; i++){
                 String w = words[i];
                 if(w.length() > 0 && curr == w.charAt(0)){
-                    words[i] = w.substring(1);
+                    words[i] = w.substring(1); //substring is expensive
                 }
             }
             s++;
