@@ -30,3 +30,61 @@ class Solution {
         return output;
     }
 }
+
+
+
+/**
+Better solution
+
+beats 95%
+
+https://leetcode.com/problems/number-of-matching-subsequences/discuss/117598/Java-solution-using-HashMap-and-Queue/307409
+
+*/
+
+class Item{
+    String word;
+    int index;
+    int length;
+    
+    public Item(String w, int i, int l){
+        word=w;
+        index=i;
+        length=l;
+    }
+}
+
+class Solution {
+    
+    public int numMatchingSubseq(String S, String[] words) {
+        Queue<Item>[] dict = new Queue[26];
+        
+        for(int i=0; i<26; i++){
+            dict[i] = new LinkedList();
+        }
+        
+        for(String w : words){
+            dict[w.charAt(0)-'a'].add(new Item(w, 0, w.length()));
+        }
+        
+        int output=0;
+        
+        for(char c : S.toCharArray()){
+            
+            Queue<Item> q = dict[c-'a'];
+            dict[c-'a'] = new LinkedList();
+            
+            while(q.size()>0){
+                Item item = q.remove();
+                if(item.index+1 == item.length){
+                    output++;
+                }else{
+                    item.index+=1;
+                    dict[item.word.charAt(item.index)-'a'].add(item);
+                }
+            }
+        }
+        
+        return output;
+    }
+}
