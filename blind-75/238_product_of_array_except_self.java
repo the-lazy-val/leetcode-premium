@@ -23,6 +23,19 @@ class Solution {
             output[i] = prefix[i]*suffix[i];
         }
         
+        /**
+        For constant space, don't have suffix array, instead keep track of product from reverse in variable
+        
+        int R = 1;
+        for (int i = length - 1; i >= 0; i--) {
+
+            // For the index 'i', R would contain the 
+            // product of all elements to the right. We update R accordingly
+            answer[i] = answer[i] * R;
+            R *= nums[i];
+        }
+        */
+        
         return output;
     }
 }
