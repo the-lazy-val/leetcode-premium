@@ -1,3 +1,46 @@
+//Better readability
+//https://leetcode.com/problems/minimum-cost-to-hire-k-workers/discuss/727927/Java-Same-Template-for-2-similar-questions
+
+class Solution {
+    public double mincostToHireWorkers(int[] quality, int[] wage, int K) {
+        
+        Pair<Double, Integer>[] ratioAndQuality = new Pair[wage.length];
+        
+        for(int worker=0; worker<wage.length; worker++){
+            double workerRatio = (double)wage[worker]/quality[worker];
+            ratioAndQuality[worker] = new Pair(workerRatio, quality[worker]);
+        }
+        
+        /**
+        Following the first rule: offer[x] >= wage[x]
+        => quality[x] * ratio[captain] >= wage[x]
+        => ratio[captain] >= ratio[x]
+        
+        So, only that captain can be selected later, who has atlest k-1 workers with lower ratio
+        */
+        Arrays.sort(ratioAndQuality, (a,b) -> Double.compare(a.getKey(), b.getKey()));
+        
+        PriorityQueue<Integer> topKpq = new PriorityQueue(Collections.reverseOrder()); //descending, as we will maintain only lowest K
+        int qualitySum=0;
+        
+        double min = Double.MAX_VALUE;
+        
+        for(int worker=0; worker<wage.length; worker++){
+            qualitySum += ratioAndQuality[worker].getValue();
+            topKpq.offer(ratioAndQuality[worker].getValue());
+            
+            if(topKpq.size() > K) qualitySum-= topKpq.poll(); //removing the higher quality worker
+            
+            //doing == K, because exactly K workers need to be hired
+            if (topKpq.size() == K) min = Math.min(min, qualitySum * ratioAndQuality[worker].getKey());
+        }
+        
+        return min;
+    }
+}
+
+
+
 class Solution {
     public double mincostToHireWorkers(int[] quality, int[] wage, int K) {
         
