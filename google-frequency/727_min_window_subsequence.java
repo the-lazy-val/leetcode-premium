@@ -1,5 +1,6 @@
 /**
 No need to use Priority Queue
+both solution works but gives TLE on larger inputs
 */
 
 class Solution {
