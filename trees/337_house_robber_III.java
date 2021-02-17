@@ -1,3 +1,62 @@
+//Recursive solution + DP : 2ms
+
+class Solution {
+    
+    HashMap<TreeNode, Integer> dp = new HashMap();
+    
+    public int getMax(TreeNode root){
+        if(root==null) return 0;
+        
+        if(dp.containsKey(root)) return dp.get(root);
+        
+        int sum = 0;
+        
+        if(root.left!=null){
+            sum+= getMax(root.left.left) + getMax(root.left.right);
+        }
+        
+        if(root.right!=null){
+            sum+= getMax(root.right.left) + getMax(root.right.right);
+        }
+        
+        int max = Math.max(sum + root.val, getMax(root.left)+getMax(root.right));
+        
+        dp.put(root, max);
+        
+        return max;
+    }
+    
+    public int rob(TreeNode root) {
+        return getMax(root);
+    }
+}
+
+
+//Recursive solution : 634 ms
+
+class Solution {
+    
+    public int getMax(TreeNode root){
+        if(root==null) return 0;
+        
+        int sum = 0;
+        
+        if(root.left!=null){
+            sum+= getMax(root.left.left) + getMax(root.left.right);
+        }
+        
+        if(root.right!=null){
+            sum+= getMax(root.right.left) + getMax(root.right.right);
+        }
+        
+        return Math.max(sum + root.val, getMax(root.left)+getMax(root.right));
+    }
+    
+    public int rob(TreeNode root) {
+        return getMax(root);
+    }
+}
+
 /**
 wrong solution
 
