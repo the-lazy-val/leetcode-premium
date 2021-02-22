@@ -2,7 +2,7 @@ class Solution {
     
     List<List<Integer>> output = new LinkedList();
     
-    public void generateCombos(int[] nums, int n, int k, LinkedList<Integer> res, HashSet<Integer> visited){
+    public void generateCombos(int[] nums, int n, int k, LinkedList<Integer> res){
         if(k==0){
             output.add(new LinkedList(res));
             return;
@@ -12,19 +12,17 @@ class Solution {
             
             int curr = nums[i];
             
-            if(! visited.contains(curr)){
+            if(! res.contains(curr)){
                 res.addLast(curr);
-                visited.add(curr);
-                generateCombos(nums, n, k-1, res, visited);
+                generateCombos(nums, n, k-1, res);
                 res.removeLast();
-                visited.remove(curr);
             }
         }
     }
     
     public List<List<Integer>> permute(int[] nums) {
         int n = nums.length;
-        generateCombos(nums, n, n, new LinkedList(), new HashSet());
+        generateCombos(nums, n, n, new LinkedList());
         
         return output;
     }
