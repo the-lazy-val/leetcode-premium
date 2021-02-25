@@ -1,5 +1,5 @@
 class Solution {
-    //variable size sliding window
+    
     public int maxSubArrayLen(int[] nums, int k) {
         HashMap<Integer, Integer> hm = new HashMap(); //sum -> index
         
