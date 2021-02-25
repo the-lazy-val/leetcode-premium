@@ -1,6 +1,9 @@
 class Solution {
     
-    public void addElement(int elem, PriorityQueue<Integer> leftMax, PriorityQueue<Integer> rightMin){
+    PriorityQueue<Integer> leftMax = new PriorityQueue(Collections.reverseOrder());
+    PriorityQueue<Integer> rightMin = new PriorityQueue();
+    
+    public void addElement(int elem){
         leftMax.add(elem);
         
         if(!leftMax.isEmpty() && !rightMin.isEmpty() && leftMax.peek() > rightMin.peek()){
@@ -19,7 +22,7 @@ class Solution {
         }
     }
     
-    public void removeElement(int elem, PriorityQueue<Integer> leftMax, PriorityQueue<Integer> rightMin){
+    public void removeElement(int elem){
         if(leftMax.contains(elem)){
             leftMax.remove(elem);
         }else{
@@ -41,12 +44,9 @@ class Solution {
     
     public double[] medianSlidingWindow(int[] nums, int k) {
         
-        PriorityQueue<Integer> leftMax = new PriorityQueue(Collections.reverseOrder());
-        PriorityQueue<Integer> rightMin = new PriorityQueue();
-        
         int i = 0;
         while(i < k){
-            addElement(nums[i], leftMax, rightMin);
+            addElement(nums[i]);
             i++;
         }
         
@@ -70,8 +70,8 @@ class Solution {
             if(i==nums.length) break;
             
             int rem = nums[i-k];
-            removeElement(rem, leftMax, rightMin);
-            addElement(nums[i], leftMax, rightMin);
+            removeElement(rem);
+            addElement(nums[i]);
             i++;
         }
         
