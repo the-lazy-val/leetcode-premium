@@ -27,10 +27,10 @@ class Solution {
                 if(chCount==1){
                     unique--;
                 }
-                tmap.put(ch, chCount-1);
+                tmap.put(ch, chCount-1); //calculations
             }
             
-            while(unique==0){
+            while(unique==0){ //window hit
                 
                 if(output==null || (j-i+1) < output.length()){
                     output = s.substring(i, j+1);
@@ -47,10 +47,10 @@ class Solution {
                     tmap.put(rem, tmap.get(rem)+1);
                 }
                 
-                i++;
+                i++; //contract window from left
             }
             
-            j++;
+            j++; //keep expanding on right
         }
         
         return (output==null) ? "" : output;
