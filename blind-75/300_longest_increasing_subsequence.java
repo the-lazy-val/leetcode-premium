@@ -1,21 +1,25 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int[] dp = new int[nums.length];
         
-        Arrays.fill(dp, 1);
-        int max=1;
+        int len = nums.length;
         
-        for(int j=1; j<nums.length; j++){
+        int output = 1;
+        
+        int[] dp = new int[len]; //max length of LIS ending at index i
+        
+        Arrays.fill(dp, 1);//since initially LIS is each index itself
+        
+        for(int j=1; j<len; j++){
+            //now compare all previous subsequence if it can be extended
             for(int i=0; i<j; i++){
-                if(nums[j] > nums[i]){ // question is strictly increasing subsequence, question was non-decreasing then >=
-                    if(dp[i]+1 > dp[j]){
-                        dp[j] = dp[i] + 1;
-                    }
-                    max = Math.max(max, dp[j]);
+                if(nums[j] > nums[i] && dp[i]+1 > dp[j]){
+                    dp[j] = dp[i]+1;
+                    
+                    output = Math.max(output, dp[j]);
                 }
             }
         }
         
-        return max;
+        return output;
     }
 }
